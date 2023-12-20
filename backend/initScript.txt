@@ -1,0 +1,39 @@
+CREATE (:Product{name: "Słuchawki bezprzewodowe", brand: "Sony", price: "499"});
+CREATE (:Product{name: "Tablet", brand: "Apple", price: "2799"});
+CREATE (:Product{name: "Ładowarka indukcyjna", brand: "Silver Monkey", price: "229"});
+CREATE (:Product{name: "Myszka komputerowa", brand: "Logitech", price: "279"});
+CREATE (:Product{name: "Monitor", brand: "Samsung", price: "1349"});
+CREATE (:Product{name: "Podkładka chłodząca", brand: "Cooler Master", price: "189"});
+
+CREATE (:Shop{name: "RTV Euro AGD", location: "Kraków", space: "3600 m^2"});
+CREATE (:Shop{name: "Media Expert", location: "Łódź", space: "2280 m^2"});
+CREATE (:Shop{name: "Media Markt", location: "Poznań", space: "4175 m^2"});
+
+MATCH (s:Shop{name:"RTV Euro AGD"}), (p:Product{name:"Monitor"})
+CREATE (s)-[:SOLD{quantity:'243', year:'2021'}]->(p);
+MATCH (s:Shop{name:"RTV Euro AGD"}), (p:Product{name:"Ładowarka indukcyjna"})
+CREATE (s)-[:SOLD{quantity:'38', year:'2022'}]->(p);
+MATCH (s:Shop{name:"RTV Euro AGD"}), (p:Product{name:"Tablet"})
+CREATE (s)-[:SOLD{quantity:'635', year:'2021'}]->(p);
+MATCH (s:Shop{name:"RTV Euro AGD"}), (p:Product{name:"Słuchawki bezprzewodowe"})
+CREATE (s)-[:ORDERED{quantity:'300', year:'2022'}]->(p);
+MATCH (s:Shop{name:"RTV Euro AGD"}), (p:Product{name:"Myszka komputerowa"})
+CREATE (s)-[:ORDERED{quantity:'250', year:'2019'}]->(p);
+
+MATCH (s:Shop{name:"Media Expert"}), (p:Product{name:"Podkładka chłodząca"})
+CREATE (s)-[:SOLD{quantity:'57', year:'2021'}]->(p);
+MATCH (s:Shop{name:"Media Expert"}), (p:Product{name:"Myszka komputerowa"})
+CREATE (s)-[:SOLD{quantity:'461', year:'2018'}]->(p);
+MATCH (s:Shop{name:"Media Expert"}), (p:Product{name:"Monitor"})
+CREATE (s)-[:ORDERED{quantity:'140', year:'2023'}]->(p);
+MATCH (s:Shop{name:"Media Expert"}), (p:Product{name:"Myszka komputerowa"})
+CREATE (s)-[:ORDERED{quantity:'500', year:'2019'}]->(p);
+
+MATCH (s:Shop{name:"Media Markt"}), (p:Product{name:"Tablet"})
+CREATE (s)-[:SOLD{quantity:'406', year:'2023'}]->(p);
+MATCH (s:Shop{name:"Media Markt"}), (p:Product{name:"Słuchawki bezprzewodowe"})
+CREATE (s)-[:ORDERED{quantity:'130', year:'2017'}]->(p);
+MATCH (s:Shop{name:"Media Markt"}), (p:Product{name:"Tablet"})
+CREATE (s)-[:ORDERED{quantity:'600', year:'2020'}]->(p);
+MATCH (s:Shop{name:"Media Markt"}), (p:Product{name:"Ładowarka indukcyjna"})
+CREATE (s)-[:ORDERED{quantity:'100', year:'2021'}]->(p);
